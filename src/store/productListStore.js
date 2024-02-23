@@ -36,6 +36,22 @@ const productListStore = create((set)=>({
             return false
         })
     },
+    setProductSearch :  (keyword)=>{
+        let url = `${baseUrl}/search/product/${keyword}`
+        return axios.get(url,config).then((res)=>{
+            if (res.data.status==="success"){
+                set({productList:res.data.data})
+            }else {
+                return false
+            }
+        }).catch((err)=>{
+            return false
+        })
+    },
+    searchKeyword : "",
+    setSearchKeyword : async (keyword) =>{
+      set({searchKeyword:keyword})
+    },
 }));
 
 

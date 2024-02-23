@@ -30,7 +30,7 @@ const OtpVerify = () => {
             let res = await otpVerifyApi(email,otpCode);
             setLoder("d-none");
             if (res){
-                navigate("/set-password")
+                navigate("/otp/verification/login")
                 successToast("Otp verification successfully");
             }else {
                 errorToast("Something went worng");

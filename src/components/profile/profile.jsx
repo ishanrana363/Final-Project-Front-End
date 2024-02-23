@@ -16,7 +16,6 @@ const Profile = () => {
             await setProfileDetails();
         })()
     },[])
-    console.log(profileDetails)
 
 
 

@@ -15,7 +15,7 @@ export const registration = (data) => {
                 return false;
             }
         }).catch((err)=>{
-            console.log(err);
+            return false;
         })
 };
 
@@ -29,7 +29,7 @@ export const otpVerification = (email,otpCode) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
+        return false;
     })
 };
 
@@ -44,7 +44,7 @@ export const otpRegistrationLogin = (email,otpCode) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
+        return false;
     })
 };
 
@@ -62,7 +62,7 @@ export const login = (data) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
+        return false;
     })
 };
 
@@ -84,7 +84,7 @@ export const createProduct = (data) => {
           return false;
       }
   }).catch((err)=>{
-      console.log(err);
+      return false;
   })
 };
 
@@ -115,7 +115,6 @@ export const updateProductApi = (id,data) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
         return false;
     })
 };
@@ -129,7 +128,6 @@ export const deleteProductApi = (id) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
         return false;
     })
 };
@@ -143,7 +141,6 @@ export const sendEmailApi = (email) => {
             return false;
         }
     }).catch((err)=>{
-        console.log(err);
         return false;
     })
 };
@@ -179,7 +176,19 @@ export const resetPasswordApi = (data) => {
 
 };
 
+export const otpLoginApi = (email,otp) => {
+    let url = `${baseUrl}/otp/login/${email}/${otp}`;
+    return axios.post(url).then((res)=>{
+        if (res.data["status"]==="success"){
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        return false;
+    })
 
+};
 
 
 

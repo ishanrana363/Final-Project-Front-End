@@ -10,6 +10,8 @@ import {getToken} from "./helpers/SessionHelper.js";
 import CreateProductPage from "./pages/createProductPage.jsx";
 import ProductListPage from "./pages/productListPage.jsx";
 import ProductUpdatePage from "./pages/productUpdatePage.jsx";
+import OtpLoginPage from "./pages/otpLoginPage.jsx";
+import KeywordPage from "./pages/keywordPage.jsx";
 
 const App = () => {
     if (getToken()){
@@ -20,6 +22,7 @@ const App = () => {
                         <Route path="/create" element={<CreateProductPage/>} />
                         <Route path="/profile" element={<ProfilePage/>} />
                         <Route path="/product/update/:id" element={<ProductUpdatePage/>} />
+                        <Route path="/search/:keyword" element={<KeywordPage/>} />
                     </Routes>
                 </BrowserRouter>
         );
@@ -34,6 +37,7 @@ const App = () => {
                         <Route path="/set-password" element= { <PasswordSetPage/> }/>
                         <Route path="/profile" element= { <ProfilePage/> }/>
                         <Route path="/otplogin" element= { <RegistrationLogin/> }/>
+                        <Route path="/otp/verification/login" element= { <OtpLoginPage/> }/>
 
                     </Routes>
                 </BrowserRouter>
