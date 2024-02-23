@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {errorToast, isEmail, isEmpty, successToast} from "../../helpers/fromHelper.js";
-import {otpVerification} from "../../apiRequest/api.js";
+import {otpVerification, otpVerifyApi} from "../../apiRequest/api.js";
 import FullScreenLoder from "../layouts/FullScreenLoder.jsx";
 import {Toaster} from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
@@ -27,10 +27,10 @@ const OtpVerify = () => {
             errorToast("Please provide your otp code!");
         }else {
             setLoder("")
-            let res = await otpVerification(email,otpCode);
+            let res = await otpVerifyApi(email,otpCode);
             setLoder("d-none");
             if (res){
-                navigate("/otplogin")
+                navigate("/set-password")
                 successToast("Otp verification successfully");
             }else {
                 errorToast("Something went worng");

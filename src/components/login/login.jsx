@@ -35,8 +35,8 @@ const Login = () => {
           let res = await login(data);
           setLoder("d-none");
           if (res){
-              navigate("/")
               successToast("Login successfully");
+              window.location.href = "/"
           }else {
               errorToast("Something went worng");
           }
@@ -65,7 +65,7 @@ const Login = () => {
                                 <label> Confirm password </label>
                                 <input value={confirmPassword} onChange={(e)=>{onGetInputValue("confirmPassword",e.target.value)}}
                                     placeholder="User Password" className="form-control animated fadeInRight"
-                                    type="Confirm password"/>
+                                    type="password"/>
                                 <br/>
                                 <button onClick={onSubmitValue} className="btn w-100 animated fadeInDownBig float-end btn-primary">Next</button>
                                 <hr/>
@@ -74,7 +74,7 @@ const Login = () => {
                                     <span>
                                         <Link className="text-center ms-3 h6   " to="/Registration">Sign Up </Link>
                                         <span className="ms-1">|</span>
-                                        <Link className="text-center ms-3 h6  " to="/send/otp">Forget Password</Link>
+                                        <Link className="text-center ms-3 h6  " to="/otp/send">Forget Password</Link>
                                     </span>
 
                                 </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {setToken, setUserData} from "../helpers/SessionHelper.js";
+import {getToken, setToken, setUserData} from "../helpers/SessionHelper.js";
 import {errorToast, successToast} from "../helpers/fromHelper.js";
 
 let baseUrl = `http://localhost:5500/api/v1`;
@@ -67,14 +67,117 @@ export const login = (data) => {
 };
 
 
+const config = {
+    headers : {
+        "token" : getToken()
+    }
+};
 
 
+export const createProduct = (data) => {
+  let url = `${baseUrl}/create/product`;
+  let postBody = data;
+  return axios.post(url,postBody,config).then((res)=>{
+      if (res.data["status"]==="success"){
+          return true;
+      }else {
+          return false;
+      }
+  }).catch((err)=>{
+      console.log(err);
+  })
+};
 
 
+export const profileUpdate = (email,name,mobile,password,photo) => {
+    let url = `${baseUrl}/update`;
+    let postBody = {email:email,name:name,password:password,img:photo};
+    let userData = {email:email,name:name,mobile:mobile,password:password,img: photo}
+    return axios.put(url,postBody,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            setUserData(userData)
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        return false;
+    })
+};
+
+export const updateProductApi = (id,data) => {
+    let url = `${baseUrl}/update/product/${id}`;
+    let postBody = data;
+    return axios.put(url,postBody,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+};
+
+export const deleteProductApi = (id) => {
+    let url = `${baseUrl}/delete/product/${id}`;
+    return axios.delete(url,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+};
+
+export const sendEmailApi = (email) => {
+    let url = `${baseUrl}/send/otp/${email}`;
+    return axios.get(url).then((res)=>{
+        if (res.data["status"]==="success"){
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+};
+
+export const otpVerifyApi = (email,otp) => {
+    let url = `${baseUrl}/verify/otp/${email}/${otp}`;
+
+    return axios.get(url).then((res)=>{
+        if (res.data["status"]==="success"){
+            return true;
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        return false;
+    })
+
+};
 
 
+export const resetPasswordApi = (data) => {
+   let url = `${baseUrl}/reset/password`;
+   let postBody = data;
+   return axios.post(url,postBody).then((res)=>{
+       if (res.data["status"]==="success"){
+           return true;
+       }else {
+           return false;
+       }
+   }).catch((err)=>{
+       return false;
+   })
 
-
+};
 
 
 

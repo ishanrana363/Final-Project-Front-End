@@ -7,26 +7,28 @@ import PasswordSetPage from "./pages/passwordSetPage.jsx";
 import ProfilePage from "./pages/profilePage.jsx";
 import RegistrationLogin from "./components/login/registrationLogin.jsx";
 import {getToken} from "./helpers/SessionHelper.js";
-import MasterLayout from "./components/layouts/authLayout.jsx";
+import CreateProductPage from "./pages/createProductPage.jsx";
+import ProductListPage from "./pages/productListPage.jsx";
+import ProductUpdatePage from "./pages/productUpdatePage.jsx";
 
 const App = () => {
     if (getToken()){
         return (
-            <div>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<MasterLayout/>} />
+                        <Route path="/" element={<ProductListPage/>} />
+                        <Route path="/create" element={<CreateProductPage/>} />
+                        <Route path="/profile" element={<ProfilePage/>} />
+                        <Route path="/product/update/:id" element={<ProductUpdatePage/>} />
                     </Routes>
                 </BrowserRouter>
-            </div>
         );
     }else {
         return (
-            <div>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/registration" element={<RegistrationPage/>} />
                         <Route path="/" element={<LoginPage/>} />
+                        <Route path="/registration" element={<RegistrationPage/>} />
                         <Route path="/otp/send" element={<OtpSend/>} />
                         <Route path="/otp/verify" element= {<OtpVerifyPage/>} />
                         <Route path="/set-password" element= { <PasswordSetPage/> }/>
@@ -35,7 +37,6 @@ const App = () => {
 
                     </Routes>
                 </BrowserRouter>
-            </div>
         );
 
     }
