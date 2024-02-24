@@ -60,7 +60,7 @@ const ProductList = () => {
                                                 <Link className=" "
                                                       to={`/product/update/${item["_id"]} `}
                                                       title={"update"}><IoIosCreate/></Link>
-                                                <Link onClick={()=>deleteProductData.bind(this, item["_id"])}
+                                                <Link onClick={deleteProductData.bind(this, item["_id"])}
                                                       className="ms-4 " to="" title={"delete"}><MdDelete/></Link>
                                             </div>
                                         </div>
