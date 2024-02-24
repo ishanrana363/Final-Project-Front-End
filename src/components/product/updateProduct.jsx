@@ -4,6 +4,7 @@ import {Toaster} from "react-hot-toast";
 import {errorToast, getBase64, successToast} from "../../helpers/fromHelper.js";
 import {updateProductApi} from "../../apiRequest/api.js";
 import {useNavigate, useParams} from "react-router-dom";
+import {updateProductDataAlert} from "../../helpers/updateAlert.js";
 
 const UpdateProduct = () => {
     const [loder, setLoder] = useState("d-none")
@@ -36,16 +37,26 @@ const UpdateProduct = () => {
     const {id} = useParams();
     const navigate = useNavigate();
     const updateProductData = async () => {
-        setLoder("");
-        let res = await updateProductApi(id,data);
-        setLoder("d-none");
-        if (res){
-            navigate("/");
-            successToast('Product update successfully');
-        }else {
-            errorToast("Product update fail");
-        }
-    };
+        await updateProductDataAlert(id,data).then(async (res)=>{
+            if (res){
+                setLoder("");
+                let resApi = await updateProductApi(id,data);
+                setLoder("d-none");
+                if (resApi){
+                    navigate("/")
+                    successToast("Product update successfully");
+                }else {
+                    errorToast("something went worng");
+                }
+            }else {
+                errorToast("Product update fail")
+            }
+        }).catch((e)=>{
+            return false;
+        })
+    }
+
+
     return (
         <>
             <div className="container">

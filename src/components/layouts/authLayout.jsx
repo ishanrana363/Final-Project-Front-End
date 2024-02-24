@@ -52,7 +52,7 @@ const MasterLayout = (props) => {
                             <input value={searchKeyword} onChange={(e)=>{ setSearchKeyword(e.target.value) }}
                                    className="form-control   me-2" style={{height: "55px"}} type="search"
                                    placeholder="Search" aria-label="Search"/>
-                            <Link to={searchKeyword.length>0?`/search/${searchKeyword}`:""} className="btn btn-outline-success mt-2 " type="submit">Search</Link>
+                            <Link to={searchKeyword.length>0?`/search/${searchKeyword}`:"/"} className="btn btn-outline-success mt-2 " type="submit">Search</Link>
                         </div>
                     </div>
 

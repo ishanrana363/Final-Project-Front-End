@@ -12,7 +12,7 @@ import { MdDelete } from "react-icons/md";
 
 const ProductList = () => {
     const [loder, setLoder] = useState("d-none");
-    const {productList,setProductList,setProductSearch} = productListStore();
+    const {productList,setProductList} = productListStore();
     useEffect(()=>{
         (async ()=>{
             setLoder("")
@@ -21,17 +21,7 @@ const ProductList = () => {
         })()
     },[]);
 
-    const updateProductData = (id,data) => {
-        updateProductDataAlert(id,data).then((res)=>{
-            if (res){
-                return true;
-            }else {
-                return false;
-            }
-        }).catch((e)=>{
-            return false;
-        })
-    };
+
 
     const deleteProductData = (id) => {
       productDeleteAlert(id).then(async (res)=>{
@@ -68,10 +58,9 @@ const ProductList = () => {
                                                 className="animated d-block text-center  ">Description : {item["description"]} </span>
                                             <div className="d-flex align-items-center justify-content-center ">
                                                 <Link className=" "
-                                                      onClick={updateProductData.bind(this, item["_id"], productList)}
                                                       to={`/product/update/${item["_id"]} `}
                                                       title={"update"}><IoIosCreate/></Link>
-                                                <Link onClick={deleteProductData.bind(this, item["_id"])}
+                                                <Link onClick={()=>deleteProductData.bind(this, item["_id"])}
                                                       className="ms-4 " to="" title={"delete"}><MdDelete/></Link>
                                             </div>
                                         </div>
